@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+
+    .stopwatch-container {
+      text-align: center;
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #display {
+      font-size: 2rem;
+      margin: 20px 0;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #start {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #stop {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    #reset {
+      background-color: #ffc107;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="stopwatch-container">
+    <h1>Stopwatch</h1>
+    <div id="display"><span id="hr">00</span>: <span id="min">00</span>: <span id="sec">00</span>: <span
+        id="ms">00</span></div>
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
+    </div>
+  </div>
+
+
+
+
+  <script>
+    let start = document.getElementById("start");
+    let st = document.getElementById("stop");
+    let reset = document.getElementById("reset");
+
+    let hr = "00";
+    let min = "00";
+    let sec = "00";
+    let ms = "00";
+    let timerID = "";
+    start.addEventListener("click", function () {
+
+      if(timerID!== ""){
+        clearInterval(timerID)
+      }
+      
+      timerID = setInterval(startTimer, 10)
+      console.log(timerID);
+      
+
+
+    });
+
+    st.addEventListener("click", function () {
+      //alert('stop')
+      clearInterval(timerID)
+    });
+
+    reset.addEventListener("click", function () {
+      clearInterval(timerID)
+      document.getElementById("hr").innerHTML = "00"
+      document.getElementById("min").innerHTML = "00"
+      document.getElementById("sec").innerHTML = "00"
+      document.getElementById("ms").innerHTML = "00"
+      hr=min=sec=ms=0;
+    })
+    function startTimer() {
+        ms++;
+
+        if (ms == 100) {
+          sec++
+          ms = 0;
+          if (sec == 60) {
+          min++
+          sec = 0;
+          if (min == 60) {
+          hr++
+          min = 0;
+
+        }
+        }
+
+       
+        }
+
+        
+        document.getElementById("ms").innerHTML = ms
+        document.getElementById("sec").innerHTML = sec
+        document.getElementById("min").innerHTML = min
+        document.getElementById("hr").innerHTML = hr
+
+        
+
+      }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>
